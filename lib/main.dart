@@ -20,6 +20,7 @@ class DicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var leftDiceNumber = 1;
     return Center(
       child: Row(
         children: <Widget>[
@@ -29,9 +30,9 @@ class DicePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
-                child: Image.asset('images/dice1.png'),
+                child: Image.asset('images/dice$leftDiceNumber.png'),
                 onPressed: () {
-                  print('olá!');
+                  print(leftDiceNumber);
                 },
               ),
             ),
