@@ -27,14 +27,24 @@ class DicePage extends StatelessWidget {
             // Expanded ocupa o espaço disponível
             // flex: 2, // Altera o "ratio" utilizado pelo expanded
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Image.asset('images/dice1.png'),
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                child: Image.asset('images/dice1.png'),
+                onPressed: () {
+                  print('olá!');
+                },
+              ),
             ),
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Image.asset('images/dice2.png'),
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                child: Image.asset('images/dice2.png'),
+                onPressed: () {
+                  print('pressed as well');
+                },
+              ),
             ),
           )
         ],
