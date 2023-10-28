@@ -26,38 +26,65 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 1;
+
+  void setRightDice() {
+    setState(() {
+      rightDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
+  void setLeftDice() {
+    setState(() {
+      leftDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            // Expanded ocupa o espaço disponível. Se img for menor, aumenta. Se for maior, diminui
-            // flex: 2, // Altera o "ratio" utilizado pelo expanded
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                child: Image.asset('images/dice$leftDiceNumber.png'),
-                onPressed: () {
-                  setState(() {
-                    leftDiceNumber = Random().nextInt(6) + 1;
-                  });
-                  print(leftDiceNumber);
-                },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: <Widget>[
+              Expanded(
+                // Expanded ocupa o espaço disponível. Se img for menor, aumenta. Se for maior, diminui
+                // flex: 2, // Altera o "ratio" utilizado pelo expanded
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    child: Image.asset('images/dice$leftDiceNumber.png'),
+                    onPressed: () {
+                      setLeftDice();
+                    },
+                  ),
+                ),
               ),
-            ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    child: Image.asset('images/dice$rightDiceNumber.png'),
+                    onPressed: () {
+                      setRightDice();
+                    },
+                  ),
+                ),
+              )
+            ],
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                child: Image.asset('images/dice$rightDiceNumber.png'),
-                onPressed: () {
-                  setState(() {
-                    rightDiceNumber = Random().nextInt(6) + 1;
-                  });
-                },
-              ),
+          ElevatedButton(
+            onPressed: () {
+              setRightDice();
+              setLeftDice();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red[400],
+              foregroundColor: Colors.white,
+            ),
+            child: const Text(
+              'Roll both dice',
+              style: TextStyle(color: Colors.white),
             ),
           )
         ],
