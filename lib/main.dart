@@ -15,24 +15,31 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   const DicePage({super.key});
 
   @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  @override
   Widget build(BuildContext context) {
-    var leftDiceNumber = 1;
     return Center(
       child: Row(
         children: <Widget>[
           Expanded(
-            // Expanded ocupa o espaço disponível
+            // Expanded ocupa o espaço disponível. Se img for menor, aumenta. Se for maior, diminui
             // flex: 2, // Altera o "ratio" utilizado pelo expanded
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
                 child: Image.asset('images/dice$leftDiceNumber.png'),
                 onPressed: () {
-                  print(leftDiceNumber);
+                  setState(() {
+                    leftDiceNumber = 2;
+                  });
                 },
               ),
             ),
